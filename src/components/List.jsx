@@ -14,19 +14,14 @@ import Edit from "./Edit";
 const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const [modalShow, setModalShow] = useState(false);
   const [edit, setEdit] = useState("");
-  const [newValue, setNewValue] = useState({});
 
   const handleCheck = (e, data) => {
 
     // More Work
     if (e.target.checked) {
-      let taskId = Math.floor(Math.random() * 1000)
-      setNewValue({ id: taskId, taskName: data.taskName, completed: true });
-      completeTask(newValue);
+      completeTask({ ...data, completed: true });
     } else {
-      let taskId = Math.floor(Math.random() * 1000)
-      setNewValue({ id: taskId, taskName: data.taskName, completed: false });
-      completeTask(newValue);
+      completeTask({ ...data, completed: false });
     }
   };
 
@@ -35,7 +30,7 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const taskList = tasks.length ? (
     tasks.map((task, id) => {
       return (
-        <ListGroup.Item key={task.id}>
+        <ListGroup.Item key={task.id} className={`${task.completed ? 'completed' : ''}`}>
           <Form.Check checked={task.completed} aria-label="Todo App" inline type="checkbox" id={`${task.id}`} onChange={(e) => handleCheck(e, task)} />
           {count++} : {task.taskName}{" "}
           <span className="float-right">

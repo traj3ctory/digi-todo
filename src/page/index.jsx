@@ -17,14 +17,16 @@ import Counter from '../components/Counter';
 **/
 
 class Home extends Component {
-    state = {
-        tasks: [
-            { id: 145, taskName: 'Create a task', completed: false },
-            { id: 223, taskName: 'Edit a task', completed: true },
-            { id: 345, taskName: 'Delete a task', completed: true },
-        ],
-        total: 0,
-        completed: 0,
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tasks: [
+                { id: 145, taskName: 'Create a task', completed: false },
+                { id: 223, taskName: 'Edit a task', completed: true },
+                { id: 345, taskName: 'Delete a task', completed: true },
+            ]
+        };
     }
 
     // ADD TODO
@@ -32,10 +34,8 @@ class Home extends Component {
         task.id = Math.floor(Math.random() * 1000)
 
         let tasks = [...this.state.tasks, task]
-        let total = tasks.length;
         this.setState({
-            tasks,
-            total
+            tasks
 
         })
         Swal.fire({
@@ -61,10 +61,8 @@ class Home extends Component {
                 let tasks = this.state.tasks.filter(task => {
                     return task.id !== id
                 });
-                let total = tasks.length;
                 this.setState({
-                    tasks,
-                    total
+                    tasks
                 })
                 Swal.fire(
                     'Deleted!',
@@ -82,33 +80,31 @@ class Home extends Component {
         }
 
         this.setState(item => {
-            let tasks = [this.state.tasks];
+            let tasks = [...this.state.tasks];
             const oldTaskIndex = tasks.filter(task => task.id !== data.id);
             const newTask = { ...tasks[oldTaskIndex], ...data }
             tasks.splice(oldTaskIndex, 1, newTask)
-            console.log(oldTaskIndex, newTask);
+
             return { tasks: tasks }
         })
     };
 
     // SET COMPLETE
-    completeask = (data) => {
+    complteTask = (data) => {
         console.log(data);
-        let tasks = [...this.state.tasks]
-        let count = 1;
+        let tasks = [...this.state.tasks];
 
         tasks.forEach(task => {
-            if (task.completed) {
-                let oldTask = tasks.filter(task => task.id === data.id);
+            if (task.status === 'completed') {
+                let oldTask = tasks.filter(task => task.id !== data.id);
                 const newTask = { ...tasks[oldTask], ...data }
                 tasks.splice(oldTask, 1, newTask)
 
                 this.setState({
-                    tasks,
-                    completed: count++,
+                    tasks
                 })
             } else {
-                let oldTask = tasks.filter(task => task.id === data.id);
+                let oldTask = tasks.filter(task => task.id !== data.id);
                 const newTask = { ...tasks[oldTask], ...data }
                 tasks.splice(oldTask, 1, newTask)
                 // console.log(tasks);
@@ -123,7 +119,7 @@ class Home extends Component {
             tasks: tasks.map(task => {
                 if (task.id === data.id)
                     return {
-                        ...tasks,
+                        ...task,
                         completed: !task.completed
                     };
                 return task;
@@ -131,21 +127,10 @@ class Home extends Component {
         });
     };
 
-
-    componentDidMount() {
-        let total = this.state.tasks.length;
-        let completed = 0;
-
-        this.state.tasks.forEach(task => {
-            if (task.completed) {
-                completed++;
-            }
-        });
-        this.setState({
-            total,
-            completed
-        })
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log('component updated');
+    //     console.log(prevProps, prevState);
+    // }
 
     render() {
         const { addTask, deleteTask, completeTask, updateTask } = this;
@@ -169,7 +154,7 @@ class Home extends Component {
                         <Col lg="3" md="4" sm="12">
                             <div className="sticky">
                                 <Add addTask={addTask} />
-                                <Counter total={this.state.total} completed={this.state.completed} />
+                                <Counter total={this.state.tasks.length} completed={this.state.tasks.filter(task => task.completed).length} />
                             </div>
                         </Col>
                     </Row>
