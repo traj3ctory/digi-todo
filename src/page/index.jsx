@@ -19,9 +19,9 @@ import Counter from '../components/Counter';
 class Home extends Component {
     state = {
         tasks: [
-            { id: 145, taskName: 'Create a task', status: 'pending' },
-            { id: 223, taskName: 'Edit a task', status: 'completed' },
-            { id: 345, taskName: 'Delete a task', status: 'completed' },
+            { id: 145, taskName: 'Create a task', completed: false },
+            { id: 223, taskName: 'Edit a task', completed: true },
+            { id: 345, taskName: 'Delete a task', completed: true },
         ],
         total: 0,
         completed: 0,
@@ -75,8 +75,24 @@ class Home extends Component {
         })
     }
 
+    // UPDATE
+    updateTask = (data) => {
+        if (!data || /^\s*$/.test(data.text)) {
+            return;
+        }
+
+        this.setState(item => {
+            let tasks = [...this.state.tasks];
+            const oldTaskIndex = tasks.filter(task => task.id !== data.id);
+            const newTask = { ...tasks[oldTaskIndex], ...data }
+            tasks.splice(oldTaskIndex, 1, newTask)
+
+            return { tasks: tasks }
+        })
+    };
+
     // SET COMPLETE
-    completeTask = (data) => {
+    complteTask = (data) => {
         console.log(data);
         let tasks = [...this.state.tasks]
         let count = 1;
@@ -101,20 +117,18 @@ class Home extends Component {
 
     }
 
-    // UPDATE
-    updateTask = (data) => {
-        if (!data || /^\s*$/.test(data.text)) {
-            return;
-        }
-
-        this.setState(item => {
-            let tasks = [...this.state.tasks];
-            const oldTaskIndex = tasks.filter(task => task.id !== data.id);
-            const newTask = { ...tasks[oldTaskIndex], ...data }
-            tasks.splice(oldTaskIndex, 1, newTask)
-
-            return { tasks: tasks }
-        })
+    completeTask = data => {
+        const { tasks } = this.state;
+        this.setState({
+            tasks: tasks.map(task => {
+                if (task.id === data.id)
+                    return {
+                        ...tasks,
+                        completed: !task.completed
+                    };
+                return task;
+            })
+        });
     };
 
     componentDidMount() {

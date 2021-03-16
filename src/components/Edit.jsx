@@ -14,7 +14,7 @@ const Edit = (props) => {
 
     const handleChange = (e) => {
         let taskId = Math.floor(Math.random() * 1000)
-        setNewValue({ id: taskId, taskName: e.target.value, status: 'pending' });
+        setNewValue({ id: taskId, taskName: e.target.value, status: false });
     };
 
     const handleSubmit = e => {
