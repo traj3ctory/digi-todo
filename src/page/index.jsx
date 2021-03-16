@@ -19,7 +19,6 @@ import Counter from '../components/Counter';
 class Home extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             tasks: [
                 { id: 145, taskName: 'Create a task', completed: false },
@@ -36,7 +35,6 @@ class Home extends Component {
         let tasks = [...this.state.tasks, task]
         this.setState({
             tasks
-
         })
         Swal.fire({
             icon: 'success',
@@ -79,40 +77,27 @@ class Home extends Component {
             return;
         }
 
-        this.setState(item => {
-            let tasks = [...this.state.tasks];
-            const oldTaskIndex = tasks.filter(task => task.id !== data.id);
+        this.setState(prevSate => {
+            let { tasks } = prevSate;
+            const oldTaskIndex = tasks.filter(task => task.id === data.id);
             const newTask = { ...tasks[oldTaskIndex], ...data }
             tasks.splice(oldTaskIndex, 1, newTask)
 
             return { tasks: tasks }
         })
+
+         
+        // this.setState(prevSate => {
+        //   const { todos } = prevSate;
+        //   const oldTodoIndex = todos.findIndex(todo => todo.id === data.id )
+        //   const newTodo = {...todos[oldTodoIndex], ...data}
+        //   todos.splice(oldTodoIndex, 1, newTodo)
+
+        //   return {todos: todos}
+        // })
     };
 
     // SET COMPLETE
-    complteTask = (data) => {
-        console.log(data);
-        let tasks = [...this.state.tasks];
-
-        tasks.forEach(task => {
-            if (task.status === 'completed') {
-                let oldTask = tasks.filter(task => task.id !== data.id);
-                const newTask = { ...tasks[oldTask], ...data }
-                tasks.splice(oldTask, 1, newTask)
-
-                this.setState({
-                    tasks
-                })
-            } else {
-                let oldTask = tasks.filter(task => task.id !== data.id);
-                const newTask = { ...tasks[oldTask], ...data }
-                tasks.splice(oldTask, 1, newTask)
-                // console.log(tasks);
-            }
-        });
-
-    }
-
     completeTask = data => {
         const { tasks } = this.state;
         this.setState({
@@ -126,11 +111,6 @@ class Home extends Component {
             })
         });
     };
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     console.log('component updated');
-    //     console.log(prevProps, prevState);
-    // }
 
     render() {
         const { addTask, deleteTask, completeTask, updateTask } = this;
