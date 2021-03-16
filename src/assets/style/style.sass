@@ -1,15 +1,46 @@
 .wrapper
     max-width: 100%
+
 .container
-    margin-bottom: 1rem;
+    margin-bottom: 1rem
+    margin-top: 1.5rem
+
+.sticky
+    position: sticky
+    z-index: 10
+    top: 5vh
+    right: 10px
+
+div.add-task 
+    border: 0
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
+    margin-bottom: 3rem
+
+div.list
+    border: 0
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)
+    min-height: 200vh
+    position: relative
+
+div.counter
+    border: 0
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
+    .card-body
+        text-align: center
+
+.del-task
+    &:hover
+         width: 100%
+         background-color: #ddd
 
 footer.footer
-    position: fixed; 
-    bottom: 0;
-    width: 100%;
-    background-color: #ddd;
+    position: fixed
+    bottom: 0
+    width: 100%
+    background-color: #17a2b8
 
 footer>p     
-    text-align: center; 
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;  
+    text-align: right
+    margin-top: 0.3rem
+    margin-bottom: 0.3rem
+    font-size: 0.85rem
