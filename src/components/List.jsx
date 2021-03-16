@@ -9,7 +9,7 @@ import Edit from "./Edit";
 /**
  * @author traj3ctory
  * @function List
- **/
+ **/ 
 
 const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const [modalShow, setModalShow] = useState(false);
