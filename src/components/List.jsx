@@ -12,12 +12,12 @@ import Edit from "./Edit";
  **/
 
 const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
+
   const [modalShow, setModalShow] = useState(false);
   const [edit, setEdit] = useState("");
 
+  // HANLDE CHECKBOX
   const handleCheck = (e, data) => {
-
-    // More Work
     if (e.target.checked) {
       completeTask({ ...data, completed: true });
     } else {
@@ -34,11 +34,11 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
           <Form.Check checked={task.completed} aria-label="Todo App" inline type="checkbox" id={`${task.id}`} onChange={(e) => handleCheck(e, task)} />
           {count++} : {task.taskName}{" "}
           <span className="float-right">
-            <button className="btn btn-danger btn-sm" onClick={(e) => { deleteTask(task.id) }}>
+            <button className="ripple btn btn-danger btn-sm" onClick={(e) => { deleteTask(task.id) }}>
               <FaRegTrashAlt />
             </button>
             &nbsp;
-            <button className="btn btn-primary btn-sm" onClick={() => { setModalShow(true); setEdit(task); }} >
+            <button className="ripple btn btn-primary btn-sm" onClick={() => { setModalShow(true); setEdit(task); }} >
               <FaRegEdit />
             </button>
           </span>
@@ -57,8 +57,9 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
 
   return (
     <>
+      {/* DISPLAY TASK LIST */}
       <ListGroup variant="flush">{taskList}</ListGroup>
-
+      {/* EDIT MODAL */}
       <Edit
         show={modalShow}
         onHide={() => setModalShow(false)}

@@ -8,15 +8,18 @@ import { FaTasks } from 'react-icons/fa';
 
 const Edit = (props) => {
 
+    // REACT HOOKS FOR STATE MANAGEMENT
     const [newValue, setNewValue] = useState(null)
 
+    // ACCESS DOM ELEMENT
     const inputRef = useRef(null);
 
+    // HANDLE INPUT CHANGE
     const handleChange = (e) => {
-        let taskId = Math.floor(Math.random() * 1000)
-        setNewValue({ id: taskId, taskName: e.target.value, completed: false });
+        setNewValue({ id: props.data.id, taskName: e.target.value, completed: props.data.completed });
     };
 
+    // SUBMIT THE UPDATED DATA
     const handleSubmit = e => {
         e.preventDefault();
         props.updateTask(
@@ -25,6 +28,7 @@ const Edit = (props) => {
         props.onHide();
     };
 
+    // POPULATE THE MODAL-EDIT STATE
     useEffect(() => {
         setNewValue(props.data);
     }, [props]);
@@ -60,7 +64,7 @@ const Edit = (props) => {
                                 ref={inputRef}
                             />
                         </InputGroup>
-                        <button className="btn btn-sm btn-primary float-right" type="submit">
+                        <button className="ripple btn btn-sm btn-primary float-right" type="submit">
                             Update
                         </button>
                     </Form>}

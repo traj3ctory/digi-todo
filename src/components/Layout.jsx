@@ -9,7 +9,7 @@ import Footer from "./Footer";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper overlay">
         <Header />
         <div className="container">{children}</div>
         <Footer />

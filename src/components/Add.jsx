@@ -18,11 +18,15 @@ class Add extends Component {
     state = {
         taskName: '',
     }
+
+    // fUNCTION TO HANDLE INPUT CHANGE
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
+    // FUNCTION TO ADD TASK
     handleSubmit = (e) => {
         e.preventDefault();
         const addTodo = document.querySelector('#task').value;
@@ -36,6 +40,7 @@ class Add extends Component {
             Swal.fire('Oops...', 'Input field cannot be empty!', 'info')
         }
     }
+
     render() {
         const { handleSubmit, handleChange } = this;
         return (
@@ -58,9 +63,9 @@ class Add extends Component {
                                     name="taskName"
                                     onChange={handleChange}
                                     spellCheck="true"
-                                                                    />
+                                />
                             </InputGroup>
-                            <button className="btn btn-sm btn-primary float-right" type="submit">
+                            <button className="ripple btn btn-sm btn-primary float-right" type="submit">
                                 Submit
                             </button>
                         </Form>

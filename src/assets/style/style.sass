@@ -1,5 +1,21 @@
 .wrapper
     max-width: 100%
+    background-image: url('../img/bg.jpg')
+    background-position: center
+    background-attachment: fixed
+    background-repeat: no-repeat
+    background-size: cover
+    background-color: #cccccc
+    min-height: 100vh
+
+.overlay
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    // opacity: 1
+    background-color: #151515
 
 .container
     margin-bottom: 1rem
@@ -11,7 +27,7 @@
     top: 5vh
     right: 10px
 
-div.add-task 
+div.add-task
     border: 0
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
     margin-bottom: 3rem
@@ -19,7 +35,7 @@ div.add-task
 div.list
     border: 0
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)
-    min-height: 200vh
+    // min-height: 200vh
     position: relative
 
 div.counter
@@ -32,11 +48,42 @@ div.counter
 //     &:hover
 //          width: 100%
 //          background-color: #ddd
+
+.ripple
+    position: relative
+    overflow: hidden
+    transform: translate3d(0, 0, 0)
+
+    &:after
+        content: ""
+        display: block
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        pointer-events: none
+        background-image: radial-gradient(circle, #000 10%, transparent 10.01%)
+        background-repeat: no-repeat
+        background-position: 50%
+        transform: scale(10, 10)
+        opacity: 0
+        transition: transform .5s, opacity 1s
+
+    &:active:after
+        transform: scale(0, 0)
+        opacity: .2
+        transition: 0s
+
+button.btn
+    &:focus, &:active:focus
+        outline: none
+        box-shadow: none
+
 .completed
     &:hover
-    background-color: green;
-    color: white
-
+        background-color: green
+        color: white
 
 footer.footer
     position: fixed

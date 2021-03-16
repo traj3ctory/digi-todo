@@ -30,7 +30,8 @@ class Home extends Component {
 
     // ADD TODO
     addTask = (task) => {
-        task.id = Math.floor(Math.random() * 1000)
+        task.id = Math.floor(Math.random() * 1000);
+        task.completed = false;
 
         let tasks = [...this.state.tasks, task]
         this.setState({
@@ -38,9 +39,9 @@ class Home extends Component {
         })
         Swal.fire({
             icon: 'success',
-            title: 'Task Added',
+            title: 'Task Added!',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
         })
     }
 
@@ -71,30 +72,24 @@ class Home extends Component {
         })
     }
 
-    // UPDATE
+    // UPDATE TODO
     updateTask = (data) => {
         if (!data || /^\s*$/.test(data.text)) {
             return;
         }
 
-        this.setState(prevSate => {
-            let { tasks } = prevSate;
-            const oldTaskIndex = tasks.filter(task => task.id === data.id);
-            const newTask = { ...tasks[oldTaskIndex], ...data }
-            tasks.splice(oldTaskIndex, 1, newTask)
-
-            return { tasks: tasks }
-        })
-
-         
-        // this.setState(prevSate => {
-        //   const { todos } = prevSate;
-        //   const oldTodoIndex = todos.findIndex(todo => todo.id === data.id )
-        //   const newTodo = {...todos[oldTodoIndex], ...data}
-        //   todos.splice(oldTodoIndex, 1, newTodo)
-
-        //   return {todos: todos}
-        // })
+        this.state.tasks.forEach(task => {
+            if (task.id === data.id) {
+                task.taskName = data.taskName;
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Task Name Updated',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                return task;
+            }
+        });
     };
 
     // SET COMPLETE
@@ -107,6 +102,15 @@ class Home extends Component {
                         ...task,
                         completed: !task.completed
                     };
+
+                if (data.completed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Task Completed',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
                 return task;
             })
         });
@@ -118,9 +122,9 @@ class Home extends Component {
             <>
                 <Layout>
                     <Row>
-                        <Col lg="9" md="8" sm="12">
+                        <Col md="8" sm="12">
                             <Card className="list">
-                                <Card.Header>Todo</Card.Header>
+                                <Card.Header>TASK LIST</Card.Header>
                                 <Card.Body>
                                     <List
                                         completeTask={completeTask}
@@ -131,7 +135,7 @@ class Home extends Component {
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col lg="3" md="4" sm="12">
+                        <Col md="4" sm="12">
                             <div className="sticky">
                                 <Add addTask={addTask} />
                                 <Counter total={this.state.tasks.length} completed={this.state.tasks.filter(task => task.completed).length} />
