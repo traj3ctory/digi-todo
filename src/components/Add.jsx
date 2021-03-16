@@ -11,10 +11,10 @@ import { FaTasks } from 'react-icons/fa';
 
 /**
 * @author traj3ctory
-* @class AddTask
+* @class Add
 **/
 
-class AddTask extends Component {
+class Add extends Component {
     state = {
         taskName: '',
     }
@@ -72,4 +72,4 @@ class AddTask extends Component {
 }
 
 
-export default AddTask;
+export default Add;

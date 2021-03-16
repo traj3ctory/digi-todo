@@ -7,8 +7,8 @@ import Card from 'react-bootstrap/Card';
 import Swal from 'sweetalert2'
 
 import Layout from '../components/Layout';
-import TodoList from '../components/TodoList';
-import AddTodo from '../components/Add';
+import List from '../components/List';
+import Add from '../components/Add';
 import Counter from '../components/Counter';
 
 /**
@@ -138,7 +138,7 @@ class Home extends Component {
                             <Card className="list">
                                 <Card.Header>Todo</Card.Header>
                                 <Card.Body>
-                                    <TodoList
+                                    <List
                                         completeTask={completeTask}
                                         deleteTask={deleteTask}
                                         updateTask={updateTask}
@@ -149,7 +149,7 @@ class Home extends Component {
                         </Col>
                         <Col lg="3" md="4" sm="12">
                             <div className="sticky">
-                                <AddTodo addTask={addTask} />
+                                <Add addTask={addTask} />
                                 <Counter total={this.state.total} completed={this.state.completed} />
                             </div>
                         </Col>

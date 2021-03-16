@@ -8,10 +8,10 @@ import Edit from "./Edit";
 
 /**
  * @author traj3ctory
- * @function TodoList
+ * @function List
  **/
 
-const TodoList = ({ tasks, deleteTask, completeTask, updateTask }) => {
+const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const [modalShow, setModalShow] = useState(false);
   const [edit, setEdit] = useState("");
   const [newValue, setNewValue] = useState({});
@@ -77,4 +77,4 @@ const TodoList = ({ tasks, deleteTask, completeTask, updateTask }) => {
   );
 };
 
-export default TodoList;
+export default List;
