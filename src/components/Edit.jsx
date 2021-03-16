@@ -8,13 +8,13 @@ import { FaTasks } from 'react-icons/fa';
 
 const Edit = (props) => {
 
-    const [newValue, setNewValue] = useState({})
+    const [newValue, setNewValue] = useState(null)
 
     const inputRef = useRef(null);
 
     const handleChange = (e) => {
         let taskId = Math.floor(Math.random() * 1000)
-        setNewValue({ id: taskId, taskName: e.target.value, status: false });
+        setNewValue({ id: taskId, taskName: e.target.value, completed: false });
     };
 
     const handleSubmit = e => {
@@ -26,7 +26,7 @@ const Edit = (props) => {
     };
 
     useEffect(() => {
-        setNewValue({ id: props.data.id, taskName: props.data.taskName, status: props.data.status });
+        setNewValue(props.data);
     }, [props]);
 
 
@@ -43,7 +43,7 @@ const Edit = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form id="editTodo" onSubmit={handleSubmit}>
+                   { newValue &&  <Form id="editTodo" onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text id="todoIcon" className="text-info"><FaTasks /></InputGroup.Text>
@@ -63,7 +63,7 @@ const Edit = (props) => {
                         <button className="btn btn-sm btn-primary float-right" type="submit">
                             Update
                         </button>
-                    </Form>
+                    </Form>}
                 </Modal.Body>
             </Modal>
         </>

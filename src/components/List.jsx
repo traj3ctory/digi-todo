@@ -35,7 +35,7 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const taskList = tasks.length ? (
     tasks.map((task, id) => {
       return (
-        <ListGroup.Item key={task.id} className={`${task.completed ? 'completed' : ''}`}>
+        <ListGroup.Item key={task.id}>
           <Form.Check checked={task.completed} aria-label="Todo App" inline type="checkbox" id={`${task.id}`} onChange={(e) => handleCheck(e, task)} />
           {count++} : {task.taskName}{" "}
           <span className="float-right">

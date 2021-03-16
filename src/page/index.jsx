@@ -82,24 +82,24 @@ class Home extends Component {
         }
 
         this.setState(item => {
-            let tasks = [...this.state.tasks];
+            let tasks = [this.state.tasks];
             const oldTaskIndex = tasks.filter(task => task.id !== data.id);
             const newTask = { ...tasks[oldTaskIndex], ...data }
             tasks.splice(oldTaskIndex, 1, newTask)
-
+            console.log(oldTaskIndex, newTask);
             return { tasks: tasks }
         })
     };
 
     // SET COMPLETE
-    complteTask = (data) => {
+    completeask = (data) => {
         console.log(data);
         let tasks = [...this.state.tasks]
         let count = 1;
 
         tasks.forEach(task => {
-            if (task.status === 'completed') {
-                let oldTask = tasks.filter(task => task.id !== data.id);
+            if (task.completed) {
+                let oldTask = tasks.filter(task => task.id === data.id);
                 const newTask = { ...tasks[oldTask], ...data }
                 tasks.splice(oldTask, 1, newTask)
 
@@ -108,7 +108,7 @@ class Home extends Component {
                     completed: count++,
                 })
             } else {
-                let oldTask = tasks.filter(task => task.id !== data.id);
+                let oldTask = tasks.filter(task => task.id === data.id);
                 const newTask = { ...tasks[oldTask], ...data }
                 tasks.splice(oldTask, 1, newTask)
                 // console.log(tasks);
@@ -131,16 +131,21 @@ class Home extends Component {
         });
     };
 
+
     componentDidMount() {
         let total = this.state.tasks.length;
+        let completed = 0;
+
+        this.state.tasks.forEach(task => {
+            if (task.completed) {
+                completed++;
+            }
+        });
         this.setState({
-            total
+            total,
+            completed
         })
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     console.log('component updated');
-    //     console.log(prevProps, prevState);
-    // }
 
     render() {
         const { addTask, deleteTask, completeTask, updateTask } = this;
