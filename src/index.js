@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import App from './App';
-import Home from "./page";
+import Todo from "./page";
 // ======================= Stylesheet
 import "sweetalert2/src/sweetalert2.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <Todo />
   </React.StrictMode>,
   document.getElementById('root')
 );

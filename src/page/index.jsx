@@ -18,10 +18,10 @@ import { MdRemove } from 'react-icons/md';
 
 /**
 * @author traj3ctory
-* @class Home
+* @class Todo
 **/
 
-class Home extends Component {
+class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -176,4 +176,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Todo;

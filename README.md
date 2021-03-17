@@ -6,3 +6,8 @@ A todo application with the following features
 4. Check and Uncheck a task of the list
 5. Total number of task
 6. Number of task completed
+
+
+USER INTERFACE
+
+    https://digitodo.netlify.app/
