@@ -5,7 +5,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className="footer bg-todo">
             <p className="pr-3 mb-0">
                 {"Copyright © "}
                 {new Date().getFullYear()}
