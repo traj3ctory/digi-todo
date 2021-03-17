@@ -48,7 +48,7 @@ class Add extends Component {
         const { handleSubmit, handleChange, props } = this;
         return (
             <>
-                <Card className={`add-task ${props.mobile ? '' : 'd-none'}`}>
+                <Card className={`add-task ${props.mobile ? 'd-block' : ''}`}>
                     <Card.Header>Add Task</Card.Header>
                     <Card.Body>
                         <Form id="addTodo" onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ class Add extends Component {
                                     // maxLength="20"
                                 />
                             </InputGroup>
-                            <button className="ripple btn btn-sm btn-primary float-right" type="submit">
+                            <button className="ripple btn btn-sm btn-primary text-center w-100" type="submit">
                                 <MdCreateNewFolder />&ensp;Submit
                             </button>
                         </Form>

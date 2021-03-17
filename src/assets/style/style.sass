@@ -60,6 +60,7 @@ $info: linear-gradient(60deg, #26c6da, #00acc1)
 
 // ADD NEW TASK
 div.add-task
+    display: block
     border: 0
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
     margin-bottom: 1.5rem
@@ -89,6 +90,7 @@ div.list
 
 // BUTTON TO SHOW THE ADD TASK FORM
 span.mobile-edit
+    display: none
     position: fixed
     bottom: 2rem
     right: .5rem
@@ -197,8 +199,11 @@ footer>p
     div.add-task
         position: fixed
         top: 15rem
-        left: 2.2rem
+        left: 1.6rem
         z-index: 15
+        display: none
+    span.mobile-edit
+        display: block
 
 // PULSE ANIMATION
 @keyframes pulse
