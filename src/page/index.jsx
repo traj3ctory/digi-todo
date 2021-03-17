@@ -141,7 +141,7 @@ class Home extends Component {
         const { addTask, deleteTask, completeTask, updateTask, mobileShow } = this;
         return (
             <>
-                <div className="wrapper overlay">
+                <div className="wrapper">
                     <Header total={this.state.tasks.length} completed={this.state.tasks.filter(task => task.completed).length} />
                     <Container fluid="lg" className="contain">
                         <Row>
