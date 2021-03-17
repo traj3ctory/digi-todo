@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Swal from 'sweetalert2'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -22,10 +23,19 @@ const Edit = (props) => {
     // SUBMIT THE UPDATED DATA
     const handleSubmit = e => {
         e.preventDefault();
-        props.updateTask(
-            newValue
-        );
-        props.onHide();
+        const updateTask = newValue.taskName;
+
+        if (updateTask !== "" && updateTask.length < 20) {
+            props.updateTask(
+                newValue
+            );
+            props.onHide();
+        } else if (updateTask.length >= 20) {
+            Swal.fire('Oops...', 'Task must be less than 20 characters!', 'warning')
+        }
+        else {
+            Swal.fire('Oops...', 'Input field cannot be empty!', 'info')
+        }
     };
 
     // POPULATE THE MODAL-EDIT STATE
@@ -47,7 +57,7 @@ const Edit = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                   { newValue &&  <Form id="editTodo" onSubmit={handleSubmit}>
+                    {newValue && <Form id="editTodo" onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text id="todoIcon" className="text-info"><FaTasks /></InputGroup.Text>

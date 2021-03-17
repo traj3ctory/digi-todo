@@ -7,7 +7,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 
-import { FaTasks } from 'react-icons/fa';
+import { MdAssignment, MdCreateNewFolder } from 'react-icons/md';
 
 /**
 * @author traj3ctory
@@ -31,27 +31,30 @@ class Add extends Component {
         e.preventDefault();
         const addTodo = document.querySelector('#task').value;
 
-        if (addTodo !== "") {
+        if (addTodo !== "" && addTodo.length < 20) {
             this.props.addTask(this.state);
             this.setState({
                 taskName: ''
             })
-        } else {
+        } else if (addTodo.length >= 20) {
+            Swal.fire('Oops...', 'Task must be less than 20 characters!', 'warning')
+        } 
+        else {
             Swal.fire('Oops...', 'Input field cannot be empty!', 'info')
         }
     }
 
     render() {
-        const { handleSubmit, handleChange } = this;
+        const { handleSubmit, handleChange, props } = this;
         return (
             <>
-                <Card className="add-task">
+                <Card className={`add-task ${props.mobile ? '' : 'd-none'}`}>
                     <Card.Header>Add Task</Card.Header>
                     <Card.Body>
                         <Form id="addTodo" onSubmit={handleSubmit}>
                             <InputGroup className="mb-3">
                                 <InputGroup.Prepend>
-                                    <InputGroup.Text id="todoIcon" className="text-info"><FaTasks /></InputGroup.Text>
+                                    <InputGroup.Text id="todoIcon" className="text-info"><MdAssignment /></InputGroup.Text>
                                 </InputGroup.Prepend>
                                 <FormControl
                                     placeholder="Add a task"
@@ -63,10 +66,11 @@ class Add extends Component {
                                     name="taskName"
                                     onChange={handleChange}
                                     spellCheck="true"
+                                    // maxLength="20"
                                 />
                             </InputGroup>
                             <button className="ripple btn btn-sm btn-primary float-right" type="submit">
-                                Submit
+                                <MdCreateNewFolder />&ensp;Submit
                             </button>
                         </Form>
                     </Card.Body>

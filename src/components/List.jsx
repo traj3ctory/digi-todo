@@ -30,16 +30,15 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
   const taskList = tasks.length ? (
     tasks.map((task, id) => {
       return (
-        <ListGroup.Item key={task.id} className={`${task.completed ? 'completed' : ''}`}>
+        
+        <ListGroup.Item key={task.id} className={`${task.completed ? 'completed' : ''} btn-action`}>
           <Form.Check checked={task.completed} aria-label="Todo App" inline type="checkbox" id={`${task.id}`} onChange={(e) => handleCheck(e, task)} />
           {count++} : {task.taskName}{" "}
           <span className="float-right">
-            <button className="ripple btn btn-danger btn-sm" onClick={(e) => { deleteTask(task.id) }}>
-              <FaRegTrashAlt />
-            </button>
-            &nbsp;
-            <button className="ripple btn btn-primary btn-sm" onClick={() => { setModalShow(true); setEdit(task); }} >
+            <button className="ripple btn btn-primary btn-sm btn-edit pr-1 pt-0 pb-1" onClick={() => { setModalShow(true); setEdit(task); }} >
               <FaRegEdit />
+            </button>&ensp;<button className="ripple btn btn-danger btn-sm px-1 pt-0 pb-1" onClick={(e) => { deleteTask(task.id) }}>
+              <FaRegTrashAlt />
             </button>
           </span>
         </ListGroup.Item>
@@ -51,7 +50,7 @@ const List = ({ tasks, deleteTask, completeTask, updateTask }) => {
         Hello! <FaUserAstronaut />,{" "}
       </Alert.Heading>
       <hr />
-      <p className="mb-0">You have no todo left!</p>
+      <p className="mb-0">You have no <strong>task</strong> left!</p>
     </Alert>
   );
 
