@@ -80,12 +80,19 @@ div.list
     border-radius: .2rem .5rem .5rem 1.5rem
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.5)
     transition: $transition
+    text-decoration: line-through
+
+.pending
+    margin-top: .25rem
+    margin-bottom: .25rem
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.25)
+    background-color: #ddd;
 
 // BUTTON TO SHOW THE ADD TASK FORM
 span.mobile-edit
     position: fixed
     bottom: 2rem
-    right: 1rem
+    right: .5rem
     cursor: pointer
     z-index: 10
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)
@@ -94,7 +101,7 @@ span.mobile-edit
     animation-duration: 1.5s
     animation-iteration-count: infinite
     .add-icon
-        font-size: 3rem
+        font-size: 2.6rem
         padding: .2rem
         border-radius: .4rem
         color: #eeeeee
