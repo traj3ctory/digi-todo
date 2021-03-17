@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap')
 $font: "Roboto", sans-serif
-$danger: #ba000d
+$danger: #d81b60
 $primary: #087fb1
-$warning: #ffbe3d
-$warningHover: #ffb117
 $weight: 500
 $transition: all .5s ease-in-out
-$error: linear-gradient(60deg, #ec407a, #d81b60)
-$green: linear-gradient(60deg, #66bb6a, #43a047)
 $info: linear-gradient(60deg, #26c6da, #00acc1)
-$yellow: linear-gradient(60deg, #ffa726, #fb8c00)
 
 // APPLICATION CONTAIN & BACKGROUN IMAGE
 .wrapper
@@ -32,6 +27,10 @@ $yellow: linear-gradient(60deg, #ffa726, #fb8c00)
 .bg-todo
     background-color: $primary
 
+.btn-danger
+    background-color: $danger
+    color: #fdfdfd
+
 // APPLICATION HEADER [FIXED]
 .todo-header
     position: fixed
@@ -50,6 +49,8 @@ $yellow: linear-gradient(60deg, #ffa726, #fb8c00)
 .card
     opacity: 0.9
     font-weight: inherit
+    .card-header
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
 
 // STICKY COUNTER AND ADD TASK CARD FOR TABLET AND DESKTOP VIEW
 .sticky
@@ -74,6 +75,11 @@ div.list
 .completed
     background: $info
     color: white
+    margin-top: .4rem
+    margin-bottom: .4rem
+    border-radius: .2rem .5rem .5rem 1.5rem
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.5)
+    transition: $transition
 
 // BUTTON TO SHOW THE ADD TASK FORM
 span.mobile-edit
@@ -96,6 +102,7 @@ span.mobile-edit
         background-color: $primary
     .danger
         background-color: $danger
+
 
 // COUNTER
 div.counter

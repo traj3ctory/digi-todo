@@ -26,12 +26,15 @@ class Home extends Component {
         super(props);
         this.state = {
             tasks: [
-                // { id: 145, taskName: 'Create a task', completed: false },
-                // { id: 223, taskName: 'Edit a task', completed: true },
-                // { id: 345, taskName: 'Delete a task', completed: true },
-                // { id: 15, taskName: 'Create a task', completed: false },
-                // { id: 2323, taskName: 'Edit a task', completed: true },
-                // { id: 34, taskName: 'Delete a task', completed: true },
+                { id: 145, taskName: 'Create a task', completed: true },
+                { id: 223, taskName: 'Edit a task', completed: true },
+                { id: 345, taskName: 'Delete a task', completed: true },
+                { id: 15, taskName: 'Check a task', completed: true },
+                { id: 2323, taskName: 'Uncheck a task', completed: true },
+                { id: 34, taskName: 'Total number of task', completed: true },
+                { id: 341, taskName: 'Number of completed task', completed: true },
+                { id: 3401, taskName: 'UI Design', completed: true },
+                { id: 49, taskName: 'Submit project', completed: false },
             ],
             mobile: false,
         };
@@ -157,7 +160,7 @@ class Home extends Component {
                             </Col>
                             <Col md="4" sm="12" className="order-last order-sm-first mb-3">
                                 <div className="sticky">
-                                <Add addTask={addTask} mobile={this.state.mobile} />
+                                    <Add addTask={addTask} mobile={this.state.mobile} />
                                     <Counter total={this.state.tasks.length} completed={this.state.tasks.filter(task => task.completed).length} />
                                 </div>
                             </Col>
