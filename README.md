@@ -10,4 +10,4 @@ A todo application with the following features
 
 USER INTERFACE
 
-    https://digitodo.netlify.app/
+    <a href="https://digitodo.netlify.app/" target="_blank">https://digitodo.netlify.app/</a>
