@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap')
 $font: "Roboto", sans-serif
-$danger: #d81b60
-$primary: #087fb1
+$danger: #b71c1c
+// $primary: #
+$primary: #0d47a1
+$primary1: #0d48a1d9
 $weight: 500
 $transition: all .5s ease-in-out
 $info: linear-gradient(60deg, #26c6da, #00acc1)
@@ -29,6 +31,11 @@ $info: linear-gradient(60deg, #26c6da, #00acc1)
 
 .btn-danger
     background-color: $danger
+    border-color: $danger
+    color: #fdfdfd
+.btn-primary
+    background-color: $primary1
+    border-color: $primary1
     color: #fdfdfd
 
 // APPLICATION HEADER [FIXED]
@@ -73,7 +80,7 @@ div.list
 
 // HIGHLIGTH COMPLETED TASK
 .completed
-    background: $info
+    background: $primary1
     color: white
     margin-top: .4rem
     margin-bottom: .4rem
@@ -86,7 +93,7 @@ div.list
     margin-top: .25rem
     margin-bottom: .25rem
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.25)
-    background-color: #ddd;
+    background-color: #ddd
 
 // BUTTON TO SHOW THE ADD TASK FORM
 span.mobile-edit
@@ -110,7 +117,6 @@ span.mobile-edit
         background-color: $primary
     .danger
         background-color: $danger
-
 
 // COUNTER
 div.counter
